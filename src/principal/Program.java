@@ -1,8 +1,7 @@
 
 package principal;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -10,32 +9,24 @@ public class Program {
 
     public static void main(String[] args) {
             
-        Set<String> set = new LinkedHashSet<>();   // HashSet não garante ordem das inserções === o TreeSet ordena os dados de acordo com o tipo === o LinkedHashSet mantem a ordem de inserção //
+        Set<Integer> a = new TreeSet<>(Arrays.asList(0, 2, 4, 5, 6, 8, 10));
+        Set<Integer> b = new TreeSet<>(Arrays.asList(5, 6, 7, 8, 9, 10));
 
-        set.add("Tv");
-        set.add("Tablet");
-        set.add("Notebook");
+        // union 
+        Set<Integer> c = new TreeSet<>(a);
+        c.addAll(b);  // adiciona todos valores de A e B porém não permite duplicata
+        System.out.println(c);
 
-        System.out.println(set.contains("Notebook"));
+        // intersection 
+        Set<Integer> d = new TreeSet<>(a);
+        d.retainAll(b);  // deixa apenas os valores que são iguais no conjuto A e B sem duplicata
+        System.out.println(d); 
 
-        for (String p : set) {
-            System.out.println(p);
-        }
-        System.out.println("======================");
+        // difference 
+        Set<Integer> e = new TreeSet<>(a);
+        e.removeAll(b);  // Deixa apenas valore do conjunto A que não está no conjunto B
+        System.out.println(e);
 
-        set.remove("Tablet");
-
-        for (String p : set) {
-            System.out.println(p);
-        }
-        System.out.println("======================");
-
-
-        set.removeIf(x -> x.charAt(0) == 'T');  // remova X talque x tenha o valor na primeira posição igual a T
-
-        for (String p : set) {
-            System.out.println(p);
-        }
 
     }
 
